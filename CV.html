@@ -1,20 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae</title>
+    <title>CV - Andrius Ežerskis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="scripts/header_import.js"></script>
+    <style>
+        body[data-bs-theme='dark'] {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        body[data-bs-theme='dark'] .timeline:before {
+            background: #ffffff;
+        }
+
+        body[data-bs-theme='dark'] .timeline-item .timeline-icon {
+            background: #ffffff;
+        }
+
+        body[data-bs-theme='dark'] .timeline-item .timeline-content {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        body[data-bs-theme='dark'] .list-group-item {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        body[data-bs-theme='light'] {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        body[data-bs-theme='light'] .timeline:before {
+            background: #000000;
+        }
+
+        body[data-bs-theme='light'] .timeline-item .timeline-icon {
+            background: #000000;
+        }
+
+        body[data-bs-theme='light'] .timeline-item .timeline-content {
+            background: #f8f9fa;
+            color: #000000;
+        }
+
+        body[data-bs-theme='light'] .list-group-item {
+            background-color: #f8f9fa;
+            color: #000000;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            list-style: none;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #007bff;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease-out;
+        }
+
+        .timeline-item:before,
+        .timeline-item:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline-item:after {
+            clear: both;
+        }
+
+        .timeline-item .timeline-icon {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: -10px;
+            background: #007bff;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            left: 55%;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            margin-top: 1rem;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: none;
+        }
+    </style>
 </head>
 
-<body>
-    <iframe src="main_header.html" width="100%" height="100%" style="border:none;"></iframe>
-
+<body data-bs-theme="dark">
+    <div id="header-placeholder"></div>
     <div class="container">
-        <h1>Andrius Ežerskis</h1>
+        <h1 class="mb-4">Curriculum Vitae</h1>
+
+        <section class="mb-5">
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-icon"></div>
+                    <div class="timeline-content">
+                        <h5>Master of Science in Computer Science</h5>
+                        <p>University of Example, 2015 - 2017</p>
+                        <p>Thesis: "Advanced Algorithms in Machine Learning"</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-icon"></div>
+                    <div class="timeline-content">
+                        <h5>Bachelor of Science in Information Technology</h5>
+                        <p>University of Example, 2011 - 2015</p>
+                        <p>Graduated with Honors</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Professional Experience</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h5>Senior Software Engineer</h5>
+                    <p>Tech Company, 2020 - Present</p>
+                    <ul>
+                        <li>Lead a team of 10 developers in building scalable web applications.</li>
+                        <li>Mentored junior developers and conducted code reviews.</li>
+                    </ul>
+                </li>
+                <li class="list-group-item">
+                    <h5>Software Engineer</h5>
+                    <p>Another Tech Company, 2017 - 2020</p>
+                    <ul>
+                        <li>Developed and maintained RESTful APIs for various services.</li>
+                        <li>Collaborated with cross-functional teams to define and design new features.</li>
+                        <li>Optimized database queries to improve application performance.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+                const items = document.querySelectorAll(".timeline-item");
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                items.forEach(item => {
+                    observer.observe(item);
+                });
+            });
+
+            const darkModeToggle = document.getElementById('darkModeToggle');
+
+            // Set initial button text based on the current mode
+            if (document.body.getAttribute('data-bs-theme') === 'dark') {
+                darkModeToggle.textContent = 'Toggle Light Mode';
+            } else {
+                darkModeToggle.textContent = 'Toggle Dark Mode';
+            }
+
+            darkModeToggle.addEventListener('click', function() {
+                if (document.body.getAttribute('data-bs-theme') === 'dark') {
+                    document.body.setAttribute('data-bs-theme', 'light');
+                    darkModeToggle.textContent = 'Toggle Dark Mode';
+                } else {
+                    document.body.setAttribute('data-bs-theme', 'dark');
+                    darkModeToggle.textContent = 'Toggle Light Mode';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
