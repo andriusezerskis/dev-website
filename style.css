@@ -1,0 +1,30 @@
+.white-shadow {
+            box-shadow: 0 4px 8px rgba(255, 193, 7, 0.5);
+}
+
+.card:hover .text-hover {
+    color: #ffc107;
+}
+
+.card {
+    color: #ffffff; 
+    border-radius: 1px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.card:hover {
+    border-color: #ffc107;
+}
+
+.card.bg-dark-gray {
+    background-color: #1a1a1a !important; /* Darker shade of gray for the cards */
+}
+
+.card-footer.bg-dark-gray {
+    background-color: #1a1a1a !important; /* Darker shade of gray for the card footers */
+}
+
+.timeline-content.bg-dark-gray .experience-item.bg-dark-gray {
+    background-color: #1a1a1a !important; /* Darker shade of gray for the timeline content */
+}
