@@ -25,31 +25,8 @@
                         <a class="nav-link" href="contact.html" target="_top">Contact me</a>
                     </li>
                 </ul>
-                <button id="darkModeToggle" class="btn btn-toggle">Toggle Light Mode</button>
             </div>
         </div>
     </nav>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const darkModeToggle = document.getElementById('darkModeToggle');
-
-            // Set initial button text based on the current mode
-            if (document.body.classList.contains('dark-mode')) {
-                darkModeToggle.textContent = 'Toggle Light Mode';
-            } else {
-                darkModeToggle.textContent = 'Toggle Dark Mode';
-            }
-
-            darkModeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                if (document.body.classList.contains('dark-mode')) {
-                    darkModeToggle.textContent = 'Toggle Light Mode';
-                } else {
-                    darkModeToggle.textContent = 'Toggle Dark Mode';
-                }
-            });
-        });
-    </script>
 </body>
 </html>

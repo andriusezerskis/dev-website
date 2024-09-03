@@ -10,52 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="scripts/header_import.js"></script>
     <style>
-        body[data-bs-theme='dark'] {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-        body[data-bs-theme='dark'] .timeline:before {
-            background: #ffffff;
-        }
-
-        body[data-bs-theme='dark'] .timeline-item .timeline-icon {
-            background: #ffffff;
-        }
-
-        body[data-bs-theme='dark'] .timeline-item .timeline-content {
-            background: #333333;
-            color: #ffffff;
-        }
-
-        body[data-bs-theme='dark'] .list-group-item {
-            background-color: #333333;
-            color: #ffffff;
-        }
-
-        body[data-bs-theme='light'] {
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        body[data-bs-theme='light'] .timeline:before {
-            background: #000000;
-        }
-
-        body[data-bs-theme='light'] .timeline-item .timeline-icon {
-            background: #000000;
-        }
-
-        body[data-bs-theme='light'] .timeline-item .timeline-content {
-            background: #f8f9fa;
-            color: #000000;
-        }
-
-        body[data-bs-theme='light'] .list-group-item {
-            background-color: #f8f9fa;
-            color: #000000;
-        }
-
         .timeline {
             position: relative;
             padding: 20px 0;
@@ -106,7 +60,7 @@
             position: relative;
             width: 45%;
             padding: 20px;
-            background: #f8f9fa;
+            background: #000000;
             border-radius: 5px;
         }
 
@@ -121,17 +75,6 @@
         .timeline-item.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        .container {
-            margin-top: 1rem;
-        }
-
-        iframe {
-            display: block;
-            width: 100%;
-            height: auto;
-            border: none;
         }
     </style>
 </head>
@@ -148,16 +91,16 @@
                     <div class="timeline-icon"></div>
                     <div class="timeline-content">
                         <h5>Master of Science in Computer Science</h5>
-                        <p>University of Example, 2015 - 2017</p>
-                        <p>Thesis: "Advanced Algorithms in Machine Learning"</p>
+                        <p>University of Brussels, 2024 - Present</p>
+                        <p>Specialization in AI and Web</p>
                     </div>
                 </div>
                 <div class="timeline-item right">
                     <div class="timeline-icon"></div>
                     <div class="timeline-content">
-                        <h5>Bachelor of Science in Information Technology</h5>
-                        <p>University of Example, 2011 - 2015</p>
-                        <p>Graduated with Honors</p>
+                        <h5>Bachelor of Science in Computer Science</h5>
+                        <p>University of Brussels, 2021 - Present</p>
+                        <p>3 courses left</p>
                     </div>
                 </div>
             </div>
@@ -223,7 +166,6 @@
                     darkModeToggle.textContent = 'Toggle Light Mode';
                 }
             });
-        });
     </script>
 </body>
 
