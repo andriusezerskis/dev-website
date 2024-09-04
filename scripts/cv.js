@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const skills = {
         "Web development": [
-            { name: "JavaScript", icon: "fab fa-js-square", level: 80 },
-            { name: "HTML", icon: "fab fa-html5", level: 85 },
-            { name: "CSS", icon: "fab fa-css3-alt", level: 75 },
-            { name: "PHP", icon: "fab fa-php", level: 65 }
+            { name: "JavaScript", icon: "fab fa-js-square", level: 50 },
+            { name: "HTML", icon: "fab fa-html5", level: 70 },
+            { name: "CSS", icon: "fab fa-css3-alt", level: 50 },
+            { name: "PHP", icon: "fab fa-php", level: 50 }
         ],
         "Programming languages": [
             { name: "SQL", icon: "fas fa-database", level: 75 },
@@ -29,7 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         "Tools and frameworks": [
             { name: "NGinx", level: 30 },
-            { name: "FLTK", level: 40 }
+            { name: "FLTK", level: 30 },
+            { name: "Bootstrap", level: 50 },
+            { name: "Git", level: 60 },
+            { name: "Docker", level: 50 }
         ]
     };
 
@@ -64,21 +67,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return Object.keys(skills).map(category => `
             <li>
                 <h3 class="text-warning">${category}</h3>
-                ${skills[category].map(skill => `
-                    <div class="skill">
-                        <h4>${skill.name} ${skill.icon ? `<i class="${skill.icon}"></i>` : ''}</h4>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: ${skill.level}%;" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="row">
+                    ${skills[category].map(skill => `
+                    <div class="col-md-6 mb-3">
+                        <div class="skill">
+                            <h4>${skill.name} ${skill.icon ? `<i class="${skill.icon}"></i>` : ''}</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: ${skill.level}%;" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                     </div>
+            
                 `).join('')}
+                </div>
             </li>
         `).join('');
     };
 
     const generateExperience = () => {
         return experience.map(item => `
-            <div class="card bg-dark-gray mb-4">
+            <div class="card experience-card bg-dark-gray mb-4">
                 <div class="card-body">
                     <h5 class="text-warning">${item.title}</h5>
                     <p>${item.company} - ${item.period}</p>

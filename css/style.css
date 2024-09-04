@@ -14,6 +14,11 @@ h1.mb-4 {
             box-shadow: 0 4px 8px rgba(255, 193, 7, 0.5);
 }
 
+.progress-bar {
+    background-color: #ffc107;
+    background-image: linear-gradient(135deg, #ffc107, #ff7b00);
+}
+
 .card:hover .text-hover {
     color: #ffc107;
 }
@@ -170,10 +175,15 @@ h1.mb-4 {
 
 .skills ul {
     list-style-type: none; /* Remove default bullet points */
-    padding-left: 50px; /* Indent the list */
+    padding-left: 0px; /* Indent the list */
 }
 
 .skills li {
+    border-color: #ffc107; /* Set border color */
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 1%;
     margin-bottom: 20px; /* Add some space between skill categories */
 }
 
@@ -221,4 +231,24 @@ h1.mb-4 {
     .nginx-icon {
         width: 24px; /* Adjust the size as needed */
     }
+}
+
+.btn-warning {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #ff9500; /* Change to a lighter shade of yellow */
+    border-color: #ff9500; /* Change border color to match background color */
+    color: #000000; /* Change text color to black */
+}
+
+.btn-toggle {
+    background-color: #ff9500;
+    color: white;
+}
+
+.btn-toggle.active {
+    background-image: linear-gradient(150deg, #ff9500, #00d196);
+    color: white;
 }

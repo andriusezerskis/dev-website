@@ -1,3 +1,8 @@
+<?php
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
@@ -19,6 +24,9 @@
     <div class="container mt-5 justify-content-center">
         <h1 class="mb-4 text-center">Projects</h1>
 
+        <div id="filter-buttons" class="d-flex justify-content-center mb-4">
+            <!-- Buttons will be dynamically generated here -->
+        </div>
         <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" id="carousel-inner">
             </div>

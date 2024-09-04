@@ -37,7 +37,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // Extract unique technologies
+    const technologies = new Set();
+    projects.forEach(project => {
+        project.technologies.forEach(tech => technologies.add(tech));
+    });
+
+    const filterButtonsContainer = document.getElementById('filter-buttons');
     const carouselInner = document.getElementById('carousel-inner');
+    let activeTech = '';
+
+    // Generate filter buttons
+    technologies.forEach(tech => {
+        const button = document.createElement('button');
+        button.className = 'btn btn-secondary btn-toggle m-1';
+        button.innerText = tech;
+        button.addEventListener('click', () => toggleFilter(tech, button));
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+        filterButtonsContainer.appendChild(button);
+    });
+
+    // Function to toggle filter
+    function toggleFilter(tech, button) {
+        if (activeTech === tech) {
+            // If the same button is clicked again, show all projects
+            activeTech = '';
+            filterProjects('');
+        } else {
+            // If a different button is clicked, filter projects
+            activeTech = tech;
+            filterProjects(tech);
+        }
+    }
+
+    // Function to filter projects
+    function filterProjects(tech) {
+        carouselInner.innerHTML = ''; // Clear existing projects
+        if (tech !== '') {
+            var filteredProjects = projects.filter(project => project.technologies.includes(tech));
+        } else { var filteredProjects = projects; }
+        filteredProjects.forEach((project, index) => {
+            const isActive = index === 0 ? 'active' : '';
+            const technologies = project.technologies.map(tech => `<i class="fab fa-${tech}"></i>`).join(' ');
+            const projectCard = `
+                <div class="carousel-item ${isActive}">
+                    <div class="card mb-4 white-shadow bg-dark-gray text-light">
+                        <div class="card-body">
+                            <h5 class="card-title text-hover">${project.title} ${project.link ? `<a href="${project.link}" target="_blank" class="bi bi-github"></a>` : ''}</h5>
+                            <p class="card-text">${project.description}</p>
+                            <div class="technologies">${technologies}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            carouselInner.insertAdjacentHTML('beforeend', projectCard);
+        });
+    }
 
     projects.forEach((project, index) => {
         const isActive = index === 0 ? 'active' : '';
@@ -71,4 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         carouselInner.insertAdjacentHTML('beforeend', projectCard);
     });
+
+    // Initially display all projects
+    filterProjects('');
 });
