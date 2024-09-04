@@ -1,3 +1,15 @@
+html, body {
+    font-size: 19px;
+}
+
+h1.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.container.mt-5 {
+    margin-top: 20px !important;
+}
+
 .white-shadow {
             box-shadow: 0 4px 8px rgba(255, 193, 7, 0.5);
 }
@@ -11,6 +23,15 @@
     border-radius: 1px;
     border-width: 2px;
     border-style: solid;
+    overflow: hidden;
+}
+
+.card.mb-4 {
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 15px;
 }
 
 .card:hover {
@@ -27,4 +48,179 @@
 
 .timeline-content.bg-dark-gray .experience-item.bg-dark-gray {
     background-color: #1a1a1a !important; /* Darker shade of gray for the timeline content */
+}
+
+.social-icons {
+    font-size: 1.5rem;
+}
+
+.carousel {
+    margin-top: 50px;
+}
+
+.carousel-item {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.carousel-item.active {
+    display: flex;
+}
+
+.carousel-item .card {
+    height: 300px; /* Adjust the height as needed */
+    width: 700px; /* Adjust the width as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.carousel-item .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.carousel-item-next, .carousel-item-prev {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item-next.carousel-item-left, .carousel-item-prev.carousel-item-right {
+    transform: translateX(0);
+}
+
+.carousel-item-next, .active.carousel-item-left {
+    transform: translateX(100%);
+}
+
+.carousel-item-prev, .active.carousel-item-right {
+    transform: translateX(-100%);
+}
+
+/* Custom styles for prettier buttons */
+.carousel-control-prev, .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ffc107, #ff7b00);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: transparent; /* Remove background color */
+    background-image: none; /* Remove default icon */
+    font-size: 24px; /* Increase icon size */
+    color: white; /* Change icon color */
+}
+
+.carousel-control-prev-icon::before {
+    content: '\f053'; /* FontAwesome left arrow */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+.carousel-control-next-icon::before {
+    content: '\f054'; /* FontAwesome right arrow */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+/* Center the technologies div */
+.technologies {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.technologies i, .technologies img {
+    margin: 0 20px;
+    font-size: 32px;
+}
+
+.carousel {
+    margin-top: 150px;
+}
+
+.nginx-icon {
+    width: 64px;
+    height: auto;
+}
+
+.skills {
+    margin-top: 20px;
+}
+
+.skills ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding-left: 50px; /* Indent the list */
+}
+
+.skills li {
+    margin-bottom: 20px; /* Add some space between skill categories */
+}
+
+.skill {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.skill h4 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.skill h4 i, .skill h4 img {
+    margin-left: 10px;
+}
+
+@media (max-width: 576px) {
+    .container.mt-5 {
+        margin-top: 1rem !important; /* Adjust margin on small screens */
+    }
+
+    h1.mb-4 {
+        margin-bottom: 1rem !important; /* Adjust margin on small screens */
+    }
+
+    .card-body {
+        padding: 10px; /* Reduce padding on small screens */
+    }
+
+    .card-title {
+        font-size: 1.25rem; /* Adjust font size on small screens */
+    }
+
+    .card-text {
+        font-size: 0.875rem; /* Adjust font size on small screens */
+    }
+
+    .technologies i,
+    .technologies img {
+        font-size: 24px; /* Adjust icon size on small screens */
+    }
+
+    .nginx-icon {
+        width: 24px; /* Adjust the size as needed */
+    }
 }
