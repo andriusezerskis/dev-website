@@ -1,8 +1,3 @@
-<?php
-header("Cache-Control: no-cache, no-store, must-revalidate");
-header("Pragma: no-cache");
-header("Expires: 0");
-?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
@@ -14,6 +9,11 @@ header("Expires: 0");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link href="../css/style.css" rel="stylesheet">
+    <?php
+    header("Cache-Control: no-cache, no-store, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    ?>
 </head>
 
 <body class="text-light">
