@@ -39,19 +39,19 @@ h1.mb-4 {
 }
 
 .card.bg-dark-gray {
-    background-color: #1a1a1a !important; /* Darker shade of gray for the cards */
+    background-color: #1a1a1a !important;
 }
 
 .card-footer.bg-dark-gray {
-    background-color: #1a1a1a !important; /* Darker shade of gray for the card footers */
+    background-color: #1a1a1a !important; 
 }
 
 .timeline-content.bg-dark-gray .experience-item.bg-dark-gray {
-    background-color: #1a1a1a !important; /* Darker shade of gray for the timeline content */
+    background-color: #1a1a1a !important;
 }
 
 .social-icons {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .carousel {
@@ -70,8 +70,8 @@ h1.mb-4 {
 }
 
 .carousel-item .card {
-    height: 300px; /* Adjust the height as needed */
-    width: 700px; /* Adjust the width as needed */
+    height: 300px; 
+    width: 700px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -104,7 +104,6 @@ h1.mb-4 {
     transform: translateX(-100%);
 }
 
-/* Custom styles for prettier buttons */
 .carousel-control-prev, .carousel-control-next {
     width: 50px;
     height: 50px;
@@ -147,7 +146,6 @@ h1.mb-4 {
 .technologies {
     display: flex;
     justify-content: center;
-    align-content: center;
     margin-top: 50px;
     flex-wrap: wrap;
 }

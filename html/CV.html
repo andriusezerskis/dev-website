@@ -6,75 +6,9 @@
     <title>Curriculum Vitae</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="../style.css" rel="stylesheet">
-    <style>
-        .timeline {
-            position: relative;
-            padding: 20px 0;
-            list-style: none;
-        }
-
-        .timeline:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #ffc107;
-            left: 50%;
-            margin-left: -1px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin: 20px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.5s ease-out;
-        }
-
-        .timeline-item:before,
-        .timeline-item:after {
-            content: " ";
-            display: table;
-        }
-
-        .timeline-item:after {
-            clear: both;
-        }
-
-        .timeline-item .timeline-icon {
-            position: absolute;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin-left: -10px;
-            background: #ffc107;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .timeline-item .timeline-content {
-            position: relative;
-            width: 45%;
-            padding: 20px;
-            background: #1a1a1a;
-            border-radius: 5px;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            left: 55%;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/timeline.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-light">
     <div id="header-placeholder"></div>
@@ -83,145 +17,24 @@
 
         <section class="mb-5">
             <h2 class="text-warning">Education</h2>
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="timeline-icon"></div>
-                    <div class="timeline-content bg-dark-gray">
-                        <h5 class="text-warning">Master of Science in Computer Science</h5>
-                        <p>University of Brussels, 2024 - Present</p>
-                        <p>Specialization in AI and Web</p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="timeline-icon"></div>
-                    <div class="timeline-content bg-dark-gray">
-                        <h5 class="text-warning">Bachelor of Science in Computer Science</h5>
-                        <p>University of Brussels, 2021 - Present</p>
-                        <p>3 courses left</p>
-                    </div>
-                </div>
-            </div>
+            <div class="timeline"></div>
         </section>
 
         <section class="mb-5">
             <h2 class="text-warning">Skills</h2>
             <div class="skills">
-                <ul>
-                    <li>
-                        <h3 class="text-warning">Web development</h3>
-                        <div class="skill">
-                            <h4>JavaScript <i class="fab fa-js-square"></i></h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 80%;" aria-valuenow="60" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <h4>HTML <i class="fab fa-html5"></i></h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <h4>CSS <i class="fab fa-css3-alt"></i></h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <h4>PHP <i class="fab fa-php"></i></h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%;" aria-valuenow="50" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <h3 class="text-warning">Programming languages</h3>
-                        <div class="skill">
-                            <h4>SQL <i class="fas fa-database"></i></h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill">
-                            <h4>Python <i class="fab fa-python"></i></h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill">
-                            <h4><i class="fab fa-cuttlefish"></i><i class="fab fa-cuttlefish">++</i></h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill">
-                            <h4>Java <i class="fab fa-java"></i></h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <h3 class="text-warning">Tools and frameworks</h3>
-                        <div class="skill">
-                            <h4>NGinx</h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 30%;" aria-valuenow="30"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill">
-                            <h4>FLTK</h4>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="60"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </li>
-
-                </ul>
+                <ul></ul>
             </div>
         </section>
 
         <section class="mb-5">
             <h2 class="text-warning">Professional Experience</h2>
-            <div class="card bg-dark-gray mb-4">
-                <div class="card-body">
-                    <h5 class="text-warning">Solution Architect Assistant</h5>
-                    <p>AXA Insurance - July 2023</p>
-                    <p>Responsibilities:</p>
-                    <ul>
-                        <li>Assisting solution architects in gathering and documenting requirements on SharePoint.</li>
-                        <li>Collaborate with solution architects to create and maintain architectural designs using Sparx Enterprise Architect.</li>
-                        <li>Cleaning diagrams, models, and documentation to illustrate the structure, behavior, and interactions of system
-                        components.</li>
-                    </ul>
-
-                    <p>Technologies used:</p>
-                    <ul>
-                        <li>SharePoint</li>
-                        <li>Sparx Enterprise Architect</li>
-                        <li>ArchiMate</li>
-                    </ul>
-                </div>
-            </div>
+            <div class="experience"></div>
         </section>
     </div>
     <div id="footer-placeholder"></div>
     <script src="../scripts/header_import.js"></script>
+    <script src="../scripts/cv.js"></script>
     <script src="../scripts/script_timeline.js"></script>
 </body>
 </html>
