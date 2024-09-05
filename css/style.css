@@ -6,6 +6,10 @@ h1.mb-4 {
     margin-bottom: 1rem;
 }
 
+.container {
+    margin-top: 50px;
+}
+
 .container.mt-5 {
     margin-top: 20px !important;
 }
@@ -86,6 +90,11 @@ h1.mb-4 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
 
 .carousel-item-next, .carousel-item-prev {
@@ -202,7 +211,47 @@ h1.mb-4 {
     margin-left: 10px;
 }
 
-@media (max-width: 576px) {
+.dropdown-menu .dropdown-item.active {
+    background-color: #ff9500; /* Highlight active items */
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin-top: 20px;
+    }
+
+    .btn-toggle {
+        display: none;
+    }
+
+    .btn-danger {
+        font-size: 0.8em; /* Smaller font size */
+        padding: 4px 8px; /* Reduced padding */
+        margin-top: 5px;
+        box-sizing: border-box; /* Ensure padding and border are included in the width */
+    }
+
+    #filter-buttons {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+
+    .dropdown-menu .dropdown-item.active {
+        background-color: #ff9500; /* Highlight active items */
+        color: white;
+    }
+
+    .carousel-item {
+        padding: 10px;
+    }
+
+    .card {
+        margin: 0;
+        box-shadow: none;
+    }
+
     .container.mt-5 {
         margin-top: 1rem !important; /* Adjust margin on small screens */
     }
@@ -212,25 +261,37 @@ h1.mb-4 {
     }
 
     .card-body {
-        padding: 10px; /* Reduce padding on small screens */
+        padding: 15px; /* Reduce padding on small screens */
     }
 
     .card-title {
-        font-size: 1.25rem; /* Adjust font size on small screens */
+        font-size: 1.2em; /* Adjust font size on small screens */
     }
 
     .card-text {
-        font-size: 0.875rem; /* Adjust font size on small screens */
+        font-size: 1em; /* Adjust font size on small screens */
+    }
+
+    .technologies {
+        font-size: 0.9em;
     }
 
     .technologies i,
     .technologies img {
-        font-size: 24px; /* Adjust icon size on small screens */
+        font-size: 1.5em; /* Adjust icon size on small screens */
     }
 
     .nginx-icon {
         width: 24px; /* Adjust the size as needed */
     }
+
+    #projectsCarousel {
+        margin-top: 50px;
+    }
+}
+
+#projectsCarousel {
+    margin-top: 0;
 }
 
 .btn-warning {
