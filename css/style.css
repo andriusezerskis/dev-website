@@ -240,7 +240,7 @@ h1.mb-4 {
 .btn-warning:hover {
     background-color: #ff9500; /* Change to a lighter shade of yellow */
     border-color: #ff9500; /* Change border color to match background color */
-    color: #000000; /* Change text color to black */
+    color: #ffffff; /* Change text color to black */
 }
 
 .btn-toggle {
