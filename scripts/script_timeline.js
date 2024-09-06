@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     const timelineItems = document.querySelectorAll('.timeline-item');
 
-    if (timelineItems.length === 0) {
+    if (!timelineItems.length) {
         console.error('No timeline items found.');
         return;
     }
-    
+
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     targets: entry.target,
                     opacity: [0, 1],
                     rotate: [15, 0],
-                    translateX: function(el, i) {
-                        return el.classList.contains('timeline-item:nth-child(even)') ? [100, 0] : [-100, 0];
-                    },
+                    translateX: entry.target.matches('.timeline-item:nth-child(even)') ? [100, 0] : [-100, 0],
                     duration: 3500,
                     easing: 'easeOutExpo'
                 });
@@ -25,7 +23,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, { threshold: 0.1 });
 
-    timelineItems.forEach(item => {
-        observer.observe(item);
-    });
+    timelineItems.forEach(item => observer.observe(item));
 });
