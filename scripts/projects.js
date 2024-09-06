@@ -39,11 +39,11 @@ function filterProjects(activeTechs) {
 // Function to clear all filters
 function clearFilters() {
 	activeTechs = [];
-	document
-		.querySelectorAll("#filter-buttons .dropdown-item .btn-toggle")
-		.forEach((btn) => {
-			btn.classList.remove("active");
-		});
+	const buttons = document.querySelectorAll(".dropdown-item");
+	buttons.forEach((button) => {
+		button.classList.remove("active");
+	});
+
 	filterProjects(activeTechs);
 }
 
@@ -52,11 +52,12 @@ function toggleFilter(tech, button) {
 	if (activeTechs.includes(tech)) {
 		// If the same button is clicked again, remove it from the list of active techs
 		activeTechs = activeTechs.filter((t) => t !== tech);
+		button.classList.remove("active"); // Untoggle active class
 	} else {
 		// If a different button is clicked, add it to the list of active techs
 		activeTechs.push(tech);
+		button.classList.toggle("active"); // Toggle active class
 	}
-	button.classList.toggle("active"); // Toggle active class
 	filterProjects(activeTechs);
 }
 
@@ -67,7 +68,8 @@ function setupProjectCards(projects) {
 		const technologies = project.technologies
 			.map((tech) => {
 				if (tech === "fltk") {
-					return "<a>fltk</a>";
+					console.log("FLTK detected");
+					return `<span class="tech-label">FLTK</span>`;
 				} else {
 					return `<i class="devicon-${tech}-plain"></i>`;
 				}
@@ -147,10 +149,13 @@ function dropdownMenuSetup(technologies) {
 	clearButton.className =
 		"btn text-danger sm-3 dropdown-item d-flex justify-content-center align-items-center";
 	clearButton.innerHTML = '<i class="bi bi-trash"></i>';
-	clearButton.addEventListener("click", clearFilters);
-	clearButton.addEventListener("touchstart", clearFilters);
+	clearButton.addEventListener("click", () => {
+		clearFilters();
+	});
+	clearButton.addEventListener("touchstart", () => {
+		clearFilters();
+	});
 	dropdownMenu.appendChild(clearButton);
-
 	dropdown.appendChild(dropdownButton);
 	dropdown.appendChild(dropdownMenu);
 	filterButtonsContainer.appendChild(dropdown);
@@ -172,6 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			setupProjectCards(projects);
 
 			// Initially display all projects
-			filterProjects("");
+			filterProjects([]);
 		});
 });
