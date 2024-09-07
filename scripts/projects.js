@@ -38,13 +38,9 @@ function filterProjects(activeTechs) {
 
 // Function to clear all filters
 function clearFilters() {
-	activeTechs = [];
-	const buttons = document.querySelectorAll(".dropdown-item");
-	buttons.forEach((button) => {
-		button.classList.remove("active");
-	});
-
-	filterProjects(activeTechs);
+    activeTechs = [];
+    document.querySelectorAll(".dropdown-item").forEach(button => button.classList.remove("active"));
+    filterProjects(activeTechs);
 }
 
 // Function to toggle filter
@@ -63,39 +59,26 @@ function toggleFilter(tech, button) {
 
 // Function to setup project card
 function setupProjectCards(projects) {
-	projects.forEach((project, index) => {
-		const isActive = index === 0 ? "active" : "";
-		const technologies = project.technologies
-			.map((tech) => {
-				if (tech === "fltk") {
-					console.log("FLTK detected");
-					return `<span class="tech-label">FLTK</span>`;
-				} else {
-					return `<i class="devicon-${tech}-plain"></i>`;
-				}
-			})
-			.join(" ");
-		const projectCard = `
-                    <div class="carousel-item ${isActive}">
-                        <div class="card mb-4 white-shadow bg-dark-gray text-light">
-                            <div class="card-body">
-                                <h5 class="card-title text-hover">${
-																	project.title
-																} ${
-			project.link
-				? `<a href="${project.link}" target="_blank" class="bi bi-github"></a>`
-				: ""
-		}</h5>
-                
-                                <p class="card-text">${project.description}</p>
-                                <div class="technologies">${technologies}</div>
-                            </div>
-                        </div>
+    projects.forEach((project, index) => {
+        const isActive = index === 0 ? "active" : "";
+        const technologies = project.technologies
+            .map(tech => tech === "fltk" ? `<span class="tech-label">FLTK</span>` : `<i class="devicon-${tech}-plain"></i>`)
+            .join(" ");
+        const projectCard = `
+            <div class="carousel-item ${isActive}">
+                <div class="card mb-4 white-shadow bg-dark-gray text-light">
+                    <div class="card-body">
+                        <h5 class="card-title text-hover">${project.title} ${
+                            project.link ? `<a href="${project.link}" target="_blank" class="bi bi-github"></a>` : ""
+                        }</h5>
+                        <p class="card-text">${project.description}</p>
+                        <div class="technologies">${technologies}</div>
                     </div>
-                `;
-
-		carouselInner.insertAdjacentHTML("beforeend", projectCard);
-	});
+                </div>
+            </div>
+        `;
+        carouselInner.insertAdjacentHTML("beforeend", projectCard);
+    });
 }
 
 function mapFilters() {
