@@ -92,56 +92,49 @@ function mapFilters() {
 	return filtersMapping;
 }
 
-// Generate filter buttons as dropdown items
+function createElement(tag, className, attributes = {}, innerHTML = "") {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    Object.keys(attributes).forEach(attr => element.setAttribute(attr, attributes[attr]));
+    element.innerHTML = innerHTML;
+    return element;
+}
+
 function dropdownMenuSetup(technologies) {
-	const dropdown = document.createElement("div");
-	const filterButtonsContainer = document.getElementById("filter-buttons");
-	dropdown.className = "dropdown d-inline-block";
+    const filterButtonsContainer = document.getElementById("filter-buttons");
+    const dropdown = createElement("div", "dropdown d-inline-block");
+    const dropdownButton = createElement("button", "btn btn-secondary dropdown-toggle", {
+        type: "button",
+        id: "dropdownMenuButton",
+        "data-bs-toggle": "dropdown",
+        "aria-expanded": "false"
+    }, '<i class="bi bi-funnel"></i>');
 
-	const dropdownButton = document.createElement("button");
-	dropdownButton.className = "btn btn-secondary dropdown-toggle";
-	dropdownButton.type = "button";
-	dropdownButton.id = "dropdownMenuButton";
-	dropdownButton.setAttribute("data-bs-toggle", "dropdown");
-	dropdownButton.setAttribute("aria-expanded", "false");
-	dropdownButton.innerHTML = '<i class="bi bi-funnel"></i>';
+    const dropdownMenu = createElement("ul", "dropdown-menu", {
+        "aria-labelledby": "dropdownMenuButton"
+    });
 
-	const dropdownMenu = document.createElement("ul");
-	dropdownMenu.className = "dropdown-menu";
-	dropdownMenu.setAttribute("aria-labelledby", "dropdownMenuButton");
-	filtersMap = mapFilters();
+    const filtersMap = mapFilters();
 
-	technologies.forEach((tech) => {
-		const dropdownItem = document.createElement("li");
-		const button = document.createElement("button");
-		button.className = "dropdown-item";
-		button.innerText = filtersMap[tech];
-		button.addEventListener("click", () => {
-			toggleFilter(tech, button);
-		});
-		dropdownItem.appendChild(button);
-		dropdownMenu.appendChild(dropdownItem);
-	});
+    technologies.forEach(tech => {
+        const button = createElement("button", "dropdown-item", {}, filtersMap[tech]);
+        button.addEventListener("click", () => toggleFilter(tech, button));
+        const dropdownItem = createElement("li");
+        dropdownItem.appendChild(button);
+        dropdownMenu.appendChild(dropdownItem);
+    });
 
-	const divider = document.createElement("div");
-	divider.className = "dropdown-divider";
-	dropdownMenu.appendChild(divider);
+    const divider = createElement("div", "dropdown-divider");
+    dropdownMenu.appendChild(divider);
 
-	// Create and append the "Clear Filters" button
-	const clearButton = document.createElement("button");
-	clearButton.className =
-		"btn text-danger sm-3 dropdown-item d-flex justify-content-center align-items-center";
-	clearButton.innerHTML = '<i class="bi bi-trash"></i>';
-	clearButton.addEventListener("click", () => {
-		clearFilters();
-	});
-	clearButton.addEventListener("touchstart", () => {
-		clearFilters();
-	});
-	dropdownMenu.appendChild(clearButton);
-	dropdown.appendChild(dropdownButton);
-	dropdown.appendChild(dropdownMenu);
-	filterButtonsContainer.appendChild(dropdown);
+    const clearButton = createElement("button", "btn text-danger sm-3 dropdown-item d-flex justify-content-center align-items-center", {}, '<i class="bi bi-trash"></i>');
+    clearButton.addEventListener("click", clearFilters);
+    clearButton.addEventListener("touchstart", clearFilters);
+    dropdownMenu.appendChild(clearButton);
+
+    dropdown.appendChild(dropdownButton);
+    dropdown.appendChild(dropdownMenu);
+    filterButtonsContainer.appendChild(dropdown);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
