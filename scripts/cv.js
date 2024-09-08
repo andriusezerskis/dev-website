@@ -50,25 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    const generateEducation = () => {
-        return education.map(item => `
-            <div class="timeline-item ${item.degree.includes('Master') ? 'left' : 'right'}">
-                <div class="timeline-icon"></div>
-                <div class="timeline-content bg-dark-gray">
-                    <h5 class="text-warning">${item.degree}</h5>
-                    <p>${item.institution}, ${item.period}</p>
-                    <p>${item.details}</p>
-                </div>
+    const generateEducation = () => education.map(item => `
+        <div class="timeline-item ${item.degree.includes('Master') ? 'left' : 'right'}">
+            <div class="timeline-icon"></div>
+            <div class="timeline-content bg-dark-gray">
+                <h5 class="text-warning">${item.degree}</h5>
+                <p>${item.institution}, ${item.period}</p>
+                <p>${item.details}</p>
             </div>
-        `).join('');
-    };
+        </div>
+    `).join('');
 
-    const generateSkills = () => {
-        return Object.keys(skills).map(category => `
-            <li>
-                <h3 class="text-warning">${category}</h3>
-                <div class="row">
-                    ${skills[category].map(skill => `
+    const generateSkills = () => Object.entries(skills).map(([category, skillList]) => `
+        <li>
+            <h3 class="text-warning">${category}</h3>
+            <div class="row">
+                ${skillList.map(skill => `
                     <div class="col-md-6 mb-3">
                         <div class="skill">
                             <h4>${skill.name} ${skill.icon ? `<i class="${skill.icon}"></i>` : ''}</h4>
@@ -77,31 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div>
-            
                 `).join('')}
-                </div>
-            </li>
-        `).join('');
-    };
-
-    const generateExperience = () => {
-        return experience.map(item => `
-            <div class="card experience-card bg-dark-gray mb-4">
-                <div class="card-body">
-                    <h5 class="text-warning">${item.title}</h5>
-                    <p>${item.company} - ${item.period}</p>
-                    <p>Responsibilities:</p>
-                    <ul>
-                        ${item.responsibilities.map(responsibility => `<li>${responsibility}</li>`).join('')}
-                    </ul>
-                    <p>Technologies used:</p>
-                    <ul>
-                        ${item.technologies.map(tech => `<li>${tech}</li>`).join('')}
-                    </ul>
-                </div>
             </div>
-        `).join('');
-    };
+        </li>
+    `).join('');
+
+    const generateExperience = () => experience.map(item => `
+        <div class="card experience-card bg-dark-gray mb-4">
+            <div class="card-body">
+                <h5 class="text-warning">${item.title}</h5>
+                <p>${item.company} - ${item.period}</p>
+                <p>Responsibilities:</p>
+                <ul>
+                    ${item.responsibilities.map(responsibility => `<li>${responsibility}</li>`).join('')}
+                </ul>
+                <p>Technologies used:</p>
+                <ul>
+                    ${item.technologies.map(tech => `<li>${tech}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
+    `).join('');
 
     document.querySelector('.skills ul').innerHTML = generateSkills();
     document.querySelector('.timeline').innerHTML = generateEducation();
