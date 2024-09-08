@@ -235,6 +235,39 @@ img {
 	margin-right: 5px;
 }
 
+#projectsCarousel {
+	margin-top: 0;
+}
+
+.btn-warning {
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-warning:hover {
+	background-color: #ff9500; /* Change to a lighter shade of yellow */
+	border-color: #ff9500; /* Change border color to match background color */
+	color: #ffffff; /* Change text color to black */
+}
+
+.btn-toggle {
+	background-color: #ff9500;
+	color: white;
+}
+
+.btn-toggle.active {
+	background-image: linear-gradient(150deg, #ff9500, #00d196);
+	color: white;
+}
+
+.copy-btn {
+	background: none;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	margin-left: 10px;
+	font-size: 1.2em;
+}
+
 @media (max-width: 600px) {
 	.container {
 		margin-top: 20px;
@@ -306,28 +339,4 @@ img {
 	#projectsCarousel {
 		margin-top: 50px;
 	}
-}
-
-#projectsCarousel {
-	margin-top: 0;
-}
-
-.btn-warning {
-	transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-warning:hover {
-	background-color: #ff9500; /* Change to a lighter shade of yellow */
-	border-color: #ff9500; /* Change border color to match background color */
-	color: #ffffff; /* Change text color to black */
-}
-
-.btn-toggle {
-	background-color: #ff9500;
-	color: white;
-}
-
-.btn-toggle.active {
-	background-image: linear-gradient(150deg, #ff9500, #00d196);
-	color: white;
 }
