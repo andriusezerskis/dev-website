@@ -163,7 +163,7 @@ function dropdownMenuSetup(technologies) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	fetch("../json/projects.json")
+	fetch("/json/projects.json")
 		.then((response) => response.json())
 		.then((data) => {
 			globalThis.projects = data;
