@@ -265,7 +265,7 @@ img {
 	color: #fff;
 	cursor: pointer;
 	margin-left: 10px;
-	font-size: 1.2em;
+	font-size: 120%;
 }
 
 @media (max-width: 600px) {
@@ -278,7 +278,7 @@ img {
 	}
 
 	.btn-danger {
-		font-size: 0.8em; /* Smaller font size */
+		font-size: 80%; /* Smaller font size */
 		padding: 4px 8px; /* Reduced padding */
 		margin-top: 5px;
 		box-sizing: border-box; /* Ensure padding and border are included in the width */
@@ -316,20 +316,20 @@ img {
 	}
 
 	.card-title {
-		font-size: 1.2em; /* Adjust font size on small screens */
+		font-size: 120%; /* Adjust font size on small screens */
 	}
 
 	.card-text {
-		font-size: 1em; /* Adjust font size on small screens */
+		font-size: 100%; /* Adjust font size on small screens */
 	}
 
 	.technologies {
-		font-size: 0.9em;
+		font-size: 90%;
 	}
 
 	.technologies i,
 	.technologies img {
-		font-size: 1.5em; /* Adjust icon size on small screens */
+		font-size: 150%; /* Adjust icon size on small screens */
 	}
 
 	.nginx-icon {
