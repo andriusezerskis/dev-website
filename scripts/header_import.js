@@ -3,21 +3,25 @@ function loadHTML(url, elementId) {
 		.then((response) => response.text())
 		.then((data) => {
 			document.getElementById(elementId).innerHTML = data;
-			var copyButton = document.getElementById("copy-btn");
-			copyButton.addEventListener("click", copyToClipboard);
+			const copyButton = document.getElementById("copy-btn");
+			if (copyButton) {
+				copyButton.addEventListener("click", copyToClipboard);
+			}
 		})
 		.catch((error) => console.error("Error loading HTML:", error));
 }
 
 function copyToClipboard() {
 	// Get the text field
-	var copyText = document.getElementById("discord-info-modal");
-	var copyButton = document.getElementById("copy-btn");
+	const copyText = document.getElementById("discord-info-modal");
+	const copyButton = document.getElementById("copy-btn");
 
-	// Copy the text inside the text field
-	navigator.clipboard.writeText(copyText.innerText).then(() => {
-		copyButton.innerHTML = '<i class="fas fa-check green-checkmark"></i>';
-	});
+	if (copyText && copyButton) {
+		// Copy the text inside the text field
+		navigator.clipboard.writeText(copyText.innerText).then(() => {
+			copyButton.innerHTML = '<i class="fas fa-check text-green-500"></i>'; // Tailwind-compatible styling
+		});
+	}
 }
 
 document.addEventListener("DOMContentLoaded", function () {

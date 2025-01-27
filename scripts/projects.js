@@ -1,183 +1,45 @@
-const carouselInner = document.getElementById("carousel-inner");
-let activeTechs = [];
+fetch("/json/projects.json")
+	.then((response) => response.json())
+	.then((projects) => {
+		const projectGrid = document.getElementById("project-grid");
 
-// Function to filter projects
-function filterProjects(activeTechs) {
-	carouselInner.innerHTML = ""; // Clear existing projects
-	if (activeTechs.length > 0) {
-		var filteredProjects = projects.filter((project) => {
-			return project.technologies.some((tech) => activeTechs.includes(tech));
-		});
-	} else {
-		var filteredProjects = projects;
-	}
+		projects.forEach((project) => {
+			const card = document.createElement("div");
+			card.className =
+				"bg-gray-800 border border-gray-700 rounded-lg p-4 shadow-lg";
 
-	filteredProjects.forEach((project, index) => {
-		const isActive = index === 0 ? "active" : "";
-		const technologies = project.technologies
-			.map((tech) => `<i class="devicon-${tech}-plain"></i>`)
-			.join(" ");
-		const projectCard = `
-        <div class="carousel-item ${isActive}">
-            <div class="card mb-4 white-shadow bg-dark-gray text-light">
-                <div class="card-body">
-                    <h5 class="card-title text-hover">${project.title} ${
-			project.link
-				? `<a href="${project.link}" target="_blank" class="bi bi-github"></a>`
-				: ""
-		}</h5>
-                    <p class="card-text">${project.description}</p>
-                    <div class="technologies">${technologies}</div>
-                </div>
-            </div>
-        </div>
-    `;
-		carouselInner.insertAdjacentHTML("beforeend", projectCard);
-	});
-}
+			const title = document.createElement("h3");
+			title.className = "text-xl font-semibold text-yellow-500 mb-2";
+			title.textContent = project.title;
 
-// Function to clear all filters
-function clearFilters() {
-	activeTechs = [];
-	document
-		.querySelectorAll(".dropdown-item")
-		.forEach((button) => button.classList.remove("active"));
-	filterProjects(activeTechs);
-}
+			const description = document.createElement("p");
+			description.className = "text-gray-300 mb-4";
+			description.textContent = project.description;
 
-// Function to toggle filter
-function toggleFilter(tech, button) {
-	if (activeTechs.includes(tech)) {
-		// If the same button is clicked again, remove it from the list of active techs
-		activeTechs = activeTechs.filter((t) => t !== tech);
-		button.classList.remove("active"); // Untoggle active class
-	} else {
-		// If a different button is clicked, add it to the list of active techs
-		activeTechs.push(tech);
-		button.classList.toggle("active"); // Toggle active class
-	}
-	filterProjects(activeTechs);
-}
-
-// Function to setup project card
-function setupProjectCards(projects) {
-	projects.forEach((project, index) => {
-		const isActive = index === 0 ? "active" : "";
-		const technologies = project.technologies
-			.map((tech) =>
-				tech === "fltk"
-					? `<span class="tech-label">FLTK</span>`
-					: `<i class="devicon-${tech}-plain"></i>`
-			)
-			.join(" ");
-		const projectCard = `
-            <div class="carousel-item ${isActive}">
-                <div class="card mb-4 white-shadow bg-dark-gray text-light">
-                    <div class="card-body">
-                        <h5 class="card-title text-hover">${project.title} ${
-			project.link
-				? `<a href="${project.link}" target="_blank" class="bi bi-github"></a>`
-				: ""
-		}</h5>
-                        <p class="card-text">${project.description}</p>
-                        <div class="technologies">${technologies}</div>
-                    </div>
-                </div>
-            </div>
-        `;
-		carouselInner.insertAdjacentHTML("beforeend", projectCard);
-	});
-}
-
-function mapFilters() {
-	const filtersMapping = {};
-	projects.forEach((project) => {
-		project.technologies.forEach((tech, index) => {
-			filtersMapping[tech] = project.filters[index];
-		});
-	});
-
-	return filtersMapping;
-}
-
-function createElement(tag, className, attributes = {}, innerHTML = "") {
-	const element = document.createElement(tag);
-	if (className) element.className = className;
-	Object.keys(attributes).forEach((attr) =>
-		element.setAttribute(attr, attributes[attr])
-	);
-	element.innerHTML = innerHTML;
-	return element;
-}
-
-function dropdownMenuSetup(technologies) {
-	const filterButtonsContainer = document.getElementById("filter-buttons");
-	const dropdown = createElement("div", "dropdown d-inline-block");
-	const dropdownButton = createElement(
-		"button",
-		"btn btn-secondary dropdown-toggle",
-		{
-			type: "button",
-			id: "dropdownMenuButton",
-			"data-bs-toggle": "dropdown",
-			"aria-expanded": "false",
-		},
-		'<i class="bi bi-funnel"></i>'
-	);
-
-	const dropdownMenu = createElement("ul", "dropdown-menu", {
-		"aria-labelledby": "dropdownMenuButton",
-	});
-
-	const filtersMap = mapFilters();
-
-	technologies.forEach((tech) => {
-		const button = createElement(
-			"button",
-			"dropdown-item",
-			{},
-			filtersMap[tech]
-		);
-		button.addEventListener("click", () => toggleFilter(tech, button));
-		const dropdownItem = createElement("li");
-		dropdownItem.appendChild(button);
-		dropdownMenu.appendChild(dropdownItem);
-	});
-
-	const divider = createElement("div", "dropdown-divider");
-	dropdownMenu.appendChild(divider);
-
-	const clearButton = createElement(
-		"button",
-		"btn text-danger sm-3 dropdown-item d-flex justify-content-center align-items-center",
-		{},
-		'<i class="bi bi-trash"></i>'
-	);
-	clearButton.addEventListener("click", clearFilters);
-	clearButton.addEventListener("touchstart", clearFilters);
-	dropdownMenu.appendChild(clearButton);
-
-	dropdown.appendChild(dropdownButton);
-	dropdown.appendChild(dropdownMenu);
-	filterButtonsContainer.appendChild(dropdown);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-	fetch("/json/projects.json")
-		.then((response) => response.json())
-		.then((data) => {
-			globalThis.projects = data;
-
-			// Extract unique technologies
-			const technologies = new Set();
-			projects.forEach((project) => {
-				project.technologies.forEach((tech) => technologies.add(tech));
+			const techList = document.createElement("ul");
+			techList.className = "flex flex-wrap gap-2 mb-4";
+			project.technologies.forEach((tech) => {
+				const techItem = document.createElement("li");
+				techItem.className =
+					"px-2 py-1 bg-gray-700 text-sm text-gray-100 rounded-md";
+				techItem.textContent = tech;
+				techList.appendChild(techItem);
 			});
 
-			dropdownMenuSetup(technologies);
-			setupProjectCards(projects);
+			const link = document.createElement("a");
+			link.className =
+				"inline-block mt-auto px-4 py-2 bg-yellow-500 text-gray-900 font-bold rounded hover:bg-yellow-600 transition";
+			link.href = project.link || "#";
+			link.textContent = project.link ? "View Project" : "No Link";
+			link.target = "_blank";
+			link.rel = "noopener noreferrer";
 
-			// Initially display all projects
-			filterProjects([]);
+			card.appendChild(title);
+			card.appendChild(description);
+			card.appendChild(techList);
+			card.appendChild(link);
+
+			projectGrid.appendChild(card);
 		});
-});
+	})
+	.catch((error) => console.error("Error loading projects.json:", error));
