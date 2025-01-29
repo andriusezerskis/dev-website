@@ -1,39 +1,48 @@
 <header class="fixed w-full bg-white shadow-md z-50">
-	<div class="container mx-auto flex justify-between items-center p-4">
+	<div class="container mx-auto flex justify-between items-center p-5">
 		<!-- Brand Logo -->
-		<a href="/" class="text-xl font-bold text-blue-500">Andrius Ežerskis</a>
+		<a
+			href="/"
+			class="text-3xl font-bold text-blue-500 hover:text-blue-700 transition-all duration-500 ease-in-out"
+		>
+			Andrius Ežerskis
+		</a>
 
 		<!-- Desktop Navigation (Visible on Medium Screens and Larger) -->
-		<div class="hidden md:flex justify-left items-center space-x-6">
+		<div class="hidden md:flex justify-left items-center space-x-8">
 			<a
 				href="/html/projects.html"
-				class="hover:text-blue-500 transition-colors"
-				>Projects</a
+				class="text-xl hover:text-blue-500 transition-all duration-500 ease-in-out hover:scale-125"
 			>
-			<nav class="flex space-x-6">
-				<a href="/html/CV.html" class="hover:text-blue-500 transition-colors"
-					>CV</a
+				Projects
+			</a>
+			<nav class="flex space-x-8">
+				<a
+					href="/html/CV.html"
+					class="text-xl hover:text-blue-500 transition-all duration-500 ease-in-out hover:scale-125"
 				>
+					CV
+				</a>
 			</nav>
 
 			<!-- Social Icons -->
-			<div class="flex space-x-4">
+			<div class="flex space-x-6">
 				<button
 					id="discord-icon"
-					class="text-gray-600 hover:text-blue-500 text-2xl"
+					class="text-gray-600 text-3xl hover:text-blue-500 hover:scale-150 transition-transform duration-500 ease-in-out"
 				>
 					<i class="fab fa-discord"></i>
 				</button>
 				<a
 					href="https://www.linkedin.com/in/andrius-ezerskis"
 					target="_blank"
-					class="text-gray-600 hover:text-blue-500 text-2xl"
+					class="text-gray-600 text-3xl hover:text-blue-500 hover:scale-150 transition-transform duration-500 ease-in-out"
 				>
 					<i class="fab fa-linkedin"></i>
 				</a>
 				<a
-					href="mailto:your.email@example.com"
-					class="text-gray-600 hover:text-blue-500 text-2xl"
+					href="mailto:andriuko6@gmail.com"
+					class="text-gray-600 text-3xl hover:text-blue-500 hover:scale-150 transition-transform duration-500 ease-in-out"
 				>
 					<i class="fas fa-envelope"></i>
 				</a>
@@ -41,46 +50,51 @@
 		</div>
 
 		<!-- Mobile Menu Button (Hamburger Icon) -->
-		<button id="menu-btn" class="md:hidden text-gray-600 focus:outline-none">
-			<i class="fas fa-bars text-2xl"></i>
+		<button
+			id="menu-btn"
+			class="md:hidden text-gray-600 text-3xl focus:outline-none hover:rotate-180 hover:scale-125 transition-transform duration-500 ease-in-out"
+		>
+			<i class="fas fa-bars"></i>
 		</button>
 	</div>
 
 	<!-- Mobile Dropdown Menu (Hidden by Default) -->
 	<div
 		id="mobile-menu"
-		class="hidden bg-white shadow-md md:hidden flex flex-col items-center text-center p-4"
+		class="hidden bg-white shadow-md md:hidden flex flex-col items-center text-center p-5"
 	>
 		<!-- Centered Navigation Links -->
 		<a
 			href="/html/projects.html"
-			class="block w-full py-3 border-b hover:bg-gray-100 transition-colors"
-			>Projects</a
+			class="block text-xl w-full py-4 border-b hover:bg-gray-100 hover:scale-125 transition-all duration-500 ease-in-out"
 		>
+			Projects
+		</a>
 		<a
 			href="/html/CV.html"
-			class="block w-full py-3 border-b hover:bg-gray-100 transition-colors"
-			>CV</a
+			class="block text-xl w-full py-4 border-b hover:bg-gray-100 hover:scale-125 transition-all duration-500 ease-in-out"
 		>
+			CV
+		</a>
 
 		<!-- Social Icons (Now at the Bottom) -->
-		<div class="flex justify-center space-x-6 mt-4">
+		<div class="flex justify-center space-x-8 mt-6">
 			<button
 				id="discord-icon-mobile"
-				class="text-gray-600 hover:text-blue-500 text-2xl"
+				class="text-gray-600 text-4xl hover:text-blue-500 hover:scale-150 transition-transform duration-500 ease-in-out"
 			>
 				<i class="fab fa-discord"></i>
 			</button>
 			<a
 				href="https://linkedin.com/in/andrius-ezerskis"
 				target="_blank"
-				class="text-gray-600 hover:text-blue-500 text-2xl"
+				class="text-gray-600 text-4xl hover:text-blue-500 hover:scale-150 transition-transform duration-500 ease-in-out"
 			>
 				<i class="fab fa-linkedin"></i>
 			</a>
 			<a
 				href="mailto:andriuko6@gmail.com"
-				class="text-gray-600 hover:text-blue-500 text-2xl"
+				class="text-gray-600 text-4xl hover:text-blue-500 hover:scale-150 transition-transform duration-500 ease-in-out"
 			>
 				<i class="fas fa-envelope"></i>
 			</a>
