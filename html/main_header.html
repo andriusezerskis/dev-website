@@ -13,10 +13,12 @@ header("Expires: 0");
 			name="description"
 			content="Portfolio of Andrius Ežerskis, a computer science student specializing in AI and web development."
 		/>
+		<!-- Tailwind CSS -->
 		<link
 			href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
 			rel="stylesheet"
 		/>
+		<!-- FontAwesome for Icons -->
 		<link
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 			rel="stylesheet"
@@ -30,44 +32,44 @@ header("Expires: 0");
 			aria-label="Main Navigation"
 		>
 			<div
-				class="container mx-auto px-4 py-4 flex justify-between items-center"
+				class="container mx-auto px-4 py-4 flex items-center justify-between"
 			>
-				<!-- Logo -->
-				<a
-					href="/index.html"
-					class="text-blue-600 text-2xl font-bold"
-					aria-label="Andrius Ežerskis Home"
-					>Andrius Ežerskis</a
-				>
+				<!-- Left Section: Name + Navigation -->
+				<div class="flex items-center gap-6">
+					<!-- Logo (Your Name) -->
+					<a
+						href="/index.html"
+						class="text-blue-600 text-2xl font-bold"
+						aria-label="Andrius Ežerskis Home"
+					>
+						Andrius Ežerskis
+					</a>
 
-				<!-- Navigation Menu -->
-				<div class="flex-grow flex justify-center">
-					<ul id="nav-menu" class="flex gap-8 items-center">
+					<!-- Navigation Menu (Next to Name) -->
+					<ul class="flex gap-6 items-center">
 						<li>
 							<a
 								href="/html/projects.html"
-								class="hover:text-green-500 text-lg font-semibold text-gray-700"
-								aria-label="Projects"
+								class="hover:text-green-500 text-lg font-semibold text-gray-700 transition duration-300 ease-in-out transform hover:scale-110"
 								>Projects</a
 							>
 						</li>
 						<li>
 							<a
 								href="/html/CV.html"
-								class="hover:text-green-500 text-lg font-semibold text-gray-700"
-								aria-label="CV"
+								class="hover:text-green-500 text-lg font-semibold text-gray-700 transition duration-300 ease-in-out transform hover:scale-110"
 								>CV</a
 							>
 						</li>
 					</ul>
 				</div>
 
-				<!-- Social Links -->
+				<!-- Social Links (Right) -->
 				<div class="flex items-center gap-4">
 					<a
 						href="#"
 						id="discord-icon"
-						class="hover:text-green-500"
+						class="hover:text-green-500 text-gray-700 transition duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg"
 						aria-label="Discord"
 					>
 						<i class="fab fa-discord text-xl"></i>
@@ -75,7 +77,7 @@ header("Expires: 0");
 					<a
 						href="https://www.linkedin.com/in/andrius-ezerskis-32b665283"
 						target="_blank"
-						class="hover:text-green-500"
+						class="hover:text-green-500 text-gray-700 transition duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg"
 						aria-label="LinkedIn Profile"
 					>
 						<i class="fab fa-linkedin text-xl"></i>
@@ -83,7 +85,7 @@ header("Expires: 0");
 					<a
 						href="mailto:andriuko6@gmail.com"
 						target="_blank"
-						class="hover:text-green-500"
+						class="hover:text-green-500 text-gray-700 transition duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg"
 						aria-label="Send Email"
 					>
 						<i class="fas fa-envelope text-xl"></i>
@@ -103,7 +105,7 @@ header("Expires: 0");
 				class="bg-white text-gray-800 p-4 rounded-md flex flex-col items-center gap-4 shadow-lg w-80"
 			>
 				<p id="discord-info-modal" class="text-lg font-semibold">
-					Discord Tag: <span class="text-green-500">lemonbrownie</span>
+					<span class="text-green-500">lemonbrownie</span>
 				</p>
 				<button
 					id="copy-btn"
@@ -126,9 +128,27 @@ header("Expires: 0");
 			// Mobile Menu Toggle
 			document
 				.getElementById("nav-toggle")
-				.addEventListener("click", function () {
+				?.addEventListener("click", function () {
 					const menu = document.getElementById("nav-menu");
 					menu.classList.toggle("hidden");
+				});
+
+			// Discord Modal Toggle
+			document
+				.getElementById("discord-icon")
+				?.addEventListener("click", function () {
+					document.getElementById("discordModal").classList.toggle("hidden");
+				});
+
+			// Copy Discord Username
+			document
+				.getElementById("copy-btn")
+				?.addEventListener("click", function () {
+					const discordText =
+						document.getElementById("discord-info-modal").textContent;
+					navigator.clipboard.writeText(discordText).then(() => {
+						alert("Discord username copied to clipboard!");
+					});
 				});
 		</script>
 	</body>

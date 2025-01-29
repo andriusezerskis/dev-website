@@ -2,7 +2,7 @@
     header("Cache-Control: no-cache, no-store, must-revalidate");
     header("Pragma: no-cache");
     header("Expires: 0");
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 	<head>
@@ -17,6 +17,8 @@
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 			rel="stylesheet"
 		/>
+		<!-- Anime.js for Animations -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
 		<script src="/scripts/cv.js" defer></script>
 		<script src="/scripts/timeline.js"></script>
@@ -28,13 +30,19 @@
 
 		<!-- Main Content -->
 		<div class="container mx-auto px-4 mt-8 pt-20">
-			<h1 class="text-center text-4xl font-bold text-blue-600 mb-12">
+			<h1
+				id="cv-title"
+				class="text-center text-4xl font-bold text-blue-600 mb-12 opacity-0"
+			>
 				Curriculum Vitae
 			</h1>
 
 			<div class="flex flex-col lg:flex-row gap-16">
 				<!-- Professional Experience Section -->
-				<section class="lg:w-1/2">
+				<section
+					id="experience-section"
+					class="lg:w-1/2 opacity-0 translate-y-10 transition-transform duration-500 ease-out hover:scale-102 hover:shadow-md hover:bg-white p-6 rounded-lg"
+				>
 					<h2 class="text-3xl font-semibold text-green-500 mb-8">
 						Professional Experience
 					</h2>
@@ -44,7 +52,10 @@
 				</section>
 
 				<!-- Education Section -->
-				<section class="lg:w-1/2">
+				<section
+					id="education-section"
+					class="lg:w-1/2 opacity-0 translate-y-10 transition-transform duration-500 ease-out hover:scale-102 hover:shadow-md hover:bg-white p-6 rounded-lg"
+				>
 					<h2 class="text-3xl font-semibold text-green-500 mb-8 text-right">
 						Education
 					</h2>
@@ -58,10 +69,8 @@
 			</div>
 
 			<!-- Skills Section -->
-			<section class="mb-16">
-				<h2 class="text-3xl pt-5 font-semibold text-green-500 mb-8 text-center">
-					Skills
-				</h2>
+			<section id="skills-section" class="mb-16 opacity-0 translate-y-10">
+				<h2 class="text-3xl pt-5 font-semibold text-green-500 mb-8">Skills</h2>
 				<div class="skills">
 					<ul class="space-y-8">
 						<!-- Skills will be dynamically generated -->
@@ -74,5 +83,46 @@
 		<footer class="text-center pt-4 py-4 bg-white border-t border-gray-200">
 			<p class="text-sm text-gray-500">&copy; 2025 Andrius Ežerskis</p>
 		</footer>
+
+		<!-- Animation Script -->
+		<script>
+			// Animate Title
+			anime({
+				targets: "#cv-title",
+				opacity: [0, 1],
+				translateY: [-20, 0],
+				duration: 1500,
+				easing: "easeOutExpo",
+			});
+
+			// Animate Sections on Scroll
+			const sections = [
+				"#experience-section",
+				"#education-section",
+				"#skills-section",
+			];
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							anime({
+								targets: entry.target,
+								opacity: [0, 1],
+								translateY: [20, 0],
+								duration: 1200,
+								easing: "easeOutExpo",
+							});
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.2 }
+			);
+
+			sections.forEach((selector) => {
+				const element = document.querySelector(selector);
+				if (element) observer.observe(element);
+			});
+		</script>
 	</body>
 </html>

@@ -7,7 +7,7 @@ fetch("/json/projects.json")
 			// Create Project Card
 			const card = document.createElement("div");
 			card.className =
-				"bg-white border border-gray-300 rounded-lg p-4 shadow-md flex flex-col";
+				"bg-white border border-gray-300 rounded-lg p-6 shadow-md flex flex-col h-full transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg";
 
 			// Project Title
 			const title = document.createElement("h3");
@@ -21,47 +21,55 @@ fetch("/json/projects.json")
 
 			// Technology List
 			const techList = document.createElement("ul");
-			techList.className = "flex flex-wrap gap-2 mb-4"; // Smaller gap
+			techList.className = "flex flex-wrap gap-2 mb-4";
+
 			project.technologies.forEach((tech) => {
 				const techItem = document.createElement("li");
 				techItem.className =
-					"flex items-center gap-1 px-2 py-1 bg-gray-700 text-xs text-gray-100 rounded-md shadow"; // Smaller font and padding
+					"flex items-center gap-2 px-2 py-1 bg-gray-200 text-xs text-gray-800 rounded-md";
 
-				// Add Icon
-				if (tech.icon) {
+				// Ensure tech is an object with name & icon
+				if (typeof tech === "object" && tech.name && tech.icon) {
 					const icon = document.createElement("i");
-					icon.className = `${tech.icon} text-sm`; // Smaller icon size
+					icon.className = `${tech.icon} text-lg text-gray-600`;
 					techItem.appendChild(icon);
-				}
 
-				// Add Technology Name
-				const techName = document.createElement("span");
-				techName.textContent = tech.displayName;
-				techName.className = "font-medium";
-				techItem.appendChild(techName);
+					const techName = document.createElement("span");
+					techName.textContent = tech.name;
+					techItem.appendChild(techName);
+				} else {
+					// If tech is a string, just display text
+					techItem.textContent = tech;
+				}
 
 				techList.appendChild(techItem);
 			});
 
-			// Button Container (to position the button at the bottom)
-			const buttonContainer = document.createElement("div");
-			buttonContainer.className = "mt-auto flex justify-center";
+			// Button stays at the bottom by wrapping everything inside a flex-grow div
+			const contentWrapper = document.createElement("div");
+			contentWrapper.className = "flex flex-col flex-grow";
+			contentWrapper.appendChild(title);
+			contentWrapper.appendChild(description);
+			contentWrapper.appendChild(techList);
+			card.appendChild(contentWrapper);
 
-			// View Project Button
-			const link = document.createElement("a");
-			link.className =
-				"inline-block px-4 py-2 bg-green-400 text-white font-bold rounded hover:bg-green-500 transition";
-			link.href = project.link || "#";
-			link.textContent = project.link ? "View Project" : "No Link";
-			link.target = "_blank";
-			link.rel = "noopener noreferrer";
+			// Button Container (Only if link exists)
+			if (project.link) {
+				const buttonContainer = document.createElement("div");
+				buttonContainer.className = "mt-auto flex justify-center";
 
-			// Append Elements
-			buttonContainer.appendChild(link); // Button container
-			card.appendChild(title); // Title
-			card.appendChild(description); // Description
-			card.appendChild(techList); // Technologies
-			card.appendChild(buttonContainer); // Add button container to card
+				// View Project Button with Hover Effect
+				const link = document.createElement("a");
+				link.className =
+					"inline-block px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg";
+				link.href = project.link;
+				link.textContent = "View project";
+				link.target = "_blank";
+				link.rel = "noopener noreferrer";
+
+				buttonContainer.appendChild(link);
+				card.appendChild(buttonContainer);
+			}
 
 			// Append Card to Grid
 			projectGrid.appendChild(card);
