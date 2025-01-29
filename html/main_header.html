@@ -11,7 +11,7 @@ header("Expires: 0");
 		<title>Andrius Ežerskis - Portfolio</title>
 		<meta
 			name="description"
-			content="Portfolio of Andrius Ežerskis, a computer science student specializing in AI and web development."
+			content="Portfolio of Andrius Ežerskis, a computer science student specializing in AI and data science."
 		/>
 		<!-- Tailwind CSS -->
 		<link
@@ -28,43 +28,70 @@ header("Expires: 0");
 		<!-- Header -->
 		<nav
 			class="fixed top-0 left-0 w-full bg-white border-b border-gray-200 shadow-md z-50"
-			role="navigation"
-			aria-label="Main Navigation"
 		>
 			<div
 				class="container mx-auto px-4 py-4 flex items-center justify-between"
 			>
-				<!-- Left Section: Name + Navigation -->
+				<!-- Left Side: Name + Navigation Menu -->
 				<div class="flex items-center gap-6">
-					<!-- Logo (Your Name) -->
+					<!-- Logo -->
 					<a
 						href="/index.html"
 						class="text-blue-600 text-2xl font-bold"
-						aria-label="Andrius Ežerskis Home"
+						aria-label="Home"
 					>
 						Andrius Ežerskis
 					</a>
-
-					<!-- Navigation Menu (Next to Name) -->
-					<ul class="flex gap-6 items-center">
+					<!-- Desktop Navigation -->
+					<ul class="hidden md:flex gap-6 items-center">
 						<li>
 							<a
 								href="/html/projects.html"
-								class="hover:text-green-500 text-lg font-semibold text-gray-700 transition duration-300 ease-in-out transform hover:scale-110"
-								>Projects</a
+								class="hover:text-green-500 text-lg font-semibold text-gray-700 transition-all duration-300 ease-in-out transform hover:scale-110"
 							>
+								Projects
+							</a>
 						</li>
 						<li>
 							<a
 								href="/html/CV.html"
-								class="hover:text-green-500 text-lg font-semibold text-gray-700 transition duration-300 ease-in-out transform hover:scale-110"
-								>CV</a
+								class="hover:text-green-500 text-lg font-semibold text-gray-700 transition-all duration-300 ease-in-out transform hover:scale-110"
 							>
+								CV
+							</a>
 						</li>
 					</ul>
 				</div>
 
-				<!-- Social Links (Right) -->
+				<!-- Mobile Menu Button -->
+				<button
+					id="mobile-menu-button"
+					class="md:hidden text-gray-700 text-xl"
+					aria-label="Open Menu"
+				>
+					<i class="fas fa-bars"></i>
+				</button>
+
+				<!-- Mobile Dropdown Menu -->
+				<div
+					id="mobile-menu"
+					class="hidden absolute top-16 right-4 bg-white shadow-md border border-gray-300 rounded-lg py-2 w-40 opacity-0 transform scale-95 transition-all duration-300 ease-in-out"
+				>
+					<a
+						href="/html/projects.html"
+						class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-200 ease-in-out"
+					>
+						Projects
+					</a>
+					<a
+						href="/html/CV.html"
+						class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-200 ease-in-out"
+					>
+						CV
+					</a>
+				</div>
+
+				<!-- Right Side: Social Links -->
 				<div class="flex items-center gap-4">
 					<a
 						href="#"
@@ -78,7 +105,7 @@ header("Expires: 0");
 						href="https://www.linkedin.com/in/andrius-ezerskis-32b665283"
 						target="_blank"
 						class="hover:text-green-500 text-gray-700 transition duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg"
-						aria-label="LinkedIn Profile"
+						aria-label="LinkedIn"
 					>
 						<i class="fab fa-linkedin text-xl"></i>
 					</a>
@@ -86,70 +113,12 @@ header("Expires: 0");
 						href="mailto:andriuko6@gmail.com"
 						target="_blank"
 						class="hover:text-green-500 text-gray-700 transition duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg"
-						aria-label="Send Email"
+						aria-label="Email"
 					>
 						<i class="fas fa-envelope text-xl"></i>
 					</a>
 				</div>
 			</div>
 		</nav>
-
-		<!-- Discord Modal -->
-		<div
-			id="discordModal"
-			class="hidden fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-75 z-40"
-			role="dialog"
-			aria-labelledby="discordModal"
-		>
-			<div
-				class="bg-white text-gray-800 p-4 rounded-md flex flex-col items-center gap-4 shadow-lg w-80"
-			>
-				<p id="discord-info-modal" class="text-lg font-semibold">
-					<span class="text-green-500">lemonbrownie</span>
-				</p>
-				<button
-					id="copy-btn"
-					class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md font-medium"
-					aria-label="Copy Discord Username"
-				>
-					Copy to Clipboard
-				</button>
-				<button
-					id="close-btn"
-					class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md font-medium"
-					aria-label="Close Modal"
-				>
-					Close
-				</button>
-			</div>
-		</div>
-
-		<script>
-			// Mobile Menu Toggle
-			document
-				.getElementById("nav-toggle")
-				?.addEventListener("click", function () {
-					const menu = document.getElementById("nav-menu");
-					menu.classList.toggle("hidden");
-				});
-
-			// Discord Modal Toggle
-			document
-				.getElementById("discord-icon")
-				?.addEventListener("click", function () {
-					document.getElementById("discordModal").classList.toggle("hidden");
-				});
-
-			// Copy Discord Username
-			document
-				.getElementById("copy-btn")
-				?.addEventListener("click", function () {
-					const discordText =
-						document.getElementById("discord-info-modal").textContent;
-					navigator.clipboard.writeText(discordText).then(() => {
-						alert("Discord username copied to clipboard!");
-					});
-				});
-		</script>
 	</body>
 </html>

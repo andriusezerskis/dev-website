@@ -2,56 +2,68 @@ function loadHTML(url, elementId) {
 	fetch(url)
 		.then((response) => response.text())
 		.then((data) => {
-			// Inject the fetched HTML into the target element
-			const element = document.getElementById(elementId);
-			if (element) {
-				element.innerHTML = data;
-
-				// Reapply event listeners after dynamic content is loaded
-				initializeEventListeners();
-			}
+			document.getElementById(elementId).innerHTML = data;
+			initializeEventListeners(); // Ensure all event listeners are re-applied
 		})
 		.catch((error) => console.error("Error loading HTML:", error));
 }
 
 function initializeEventListeners() {
-	// Discord Icon - Open Modal
-	const discordIcon = document.getElementById("discord-icon");
-	if (discordIcon) {
-		discordIcon.addEventListener("click", () => {
-			const discordModal = document.getElementById("discordModal");
-			if (discordModal) {
-				discordModal.classList.remove("hidden");
-			}
-		});
-	}
+	console.log("Initializing event listeners...");
 
-	// Close Modal
+	// Mobile Menu
+	const menuButton = document.getElementById("mobile-menu-button");
+	const mobileMenu = document.getElementById("mobile-menu");
+
+	menuButton.addEventListener("click", function (event) {
+		event.stopPropagation(); // Prevents event bubbling
+		mobileMenu.classList.toggle("hidden");
+		mobileMenu.classList.toggle("opacity-100");
+		mobileMenu.classList.toggle("scale-100");
+	});
+
+	// Close menu when clicking outside
+	document.addEventListener("click", function (event) {
+		if (
+			!menuButton.contains(event.target) &&
+			!mobileMenu.contains(event.target)
+		) {
+			mobileMenu.classList.add("hidden");
+		}
+	});
+
+	// Discord Modal
+	const discordButton = document.getElementById("discord-icon");
+	const discordModal = document.getElementById("discordModal");
 	const closeButton = document.getElementById("close-btn");
-	if (closeButton) {
-		closeButton.addEventListener("click", () => {
-			const discordModal = document.getElementById("discordModal");
-			if (discordModal) {
-				discordModal.classList.add("hidden");
-			}
-		});
-	}
-
-	// Copy Discord Username
 	const copyButton = document.getElementById("copy-btn");
-	if (copyButton) {
-		copyButton.addEventListener("click", () => {
-			const discordText = document.getElementById("discord-info-modal");
-			if (discordText) {
-				navigator.clipboard.writeText(discordText.innerText).then(() => {
-					copyButton.innerHTML = '<i class="fas fa-check text-green-500"></i>';
-				});
-			}
+
+	discordButton.addEventListener("click", function () {
+		discordModal.classList.remove("hidden");
+		discordModal.classList.add("opacity-100", "scale-100");
+	});
+
+	closeButton.addEventListener("click", function () {
+		discordModal.classList.add("hidden");
+		discordModal.classList.remove("opacity-100", "scale-100");
+	});
+
+	copyButton.addEventListener("click", function () {
+		navigator.clipboard.writeText("lemonbrownie").then(() => {
+			copyButton.classList.replace("bg-green-500", "bg-gray-500");
+			copyButton.innerHTML = `<i class="fas fa-check text-white"></i> Copied!`;
+
+			setTimeout(() => {
+				copyButton.classList.replace("bg-gray-500", "bg-green-500");
+				copyButton.innerHTML = `<i class="fas fa-copy"></i> Copy to Clipboard`;
+			}, 1500);
 		});
-	}
+	});
+
+	console.log("Event listeners initialized.");
 }
 
+// Ensure the header is loaded
 document.addEventListener("DOMContentLoaded", () => {
-	// Load the navigation bar into the placeholder div
-	loadHTML("main_header.html", "header-placeholder");
+	loadHTML("/html/main_header.html", "header-placeholder");
 });

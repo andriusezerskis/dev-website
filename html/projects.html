@@ -2,7 +2,7 @@
     header("Cache-Control: no-cache, no-store, must-revalidate");
     header("Pragma: no-cache");
     header("Expires: 0");
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 	<head>
@@ -11,6 +11,7 @@
 		<title>Projects - Andrius Ežerskis</title>
 		<script src="/scripts/projects.js" defer></script>
 		<script src="/scripts/header_import.js" defer></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 		<link
 			href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
 			rel="stylesheet"
@@ -21,12 +22,24 @@
 		/>
 	</head>
 	<body class="bg-gray-50 text-gray-700">
+		<!-- Header -->
 		<div id="header-placeholder"></div>
 
-		<div class="main-content container mx-auto px-4 text-blue-500 mb-8 pt-20">
-			<h1 class="text-center text-3xl font-bold mb-8">Projects</h1>
-			<div id="project-grid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-				<!-- Dynamically generated cards for projects -->
+		<!-- Main Content -->
+		<div
+			class="main-content container mx-auto px-4 text-blue-500 mt-8 pt-20 opacity-0"
+		>
+			<h1
+				id="projects-title"
+				class="text-center text-3xl font-bold mb-8 opacity-0"
+			>
+				Projects
+			</h1>
+			<div
+				id="project-grid"
+				class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 opacity-0"
+			>
+				<!-- Dynamically generated project cards will go here -->
 			</div>
 		</div>
 
@@ -34,5 +47,39 @@
 		<footer class="text-center pt-4 py-4 bg-white border-t border-gray-200">
 			<p class="text-sm text-gray-500">&copy; 2025 Andrius Ežerskis</p>
 		</footer>
+
+		<!-- Animation Script -->
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				// Fade in the main content smoothly
+				anime({
+					targets: ".main-content",
+					opacity: [0, 1],
+					translateY: [-20, 0],
+					duration: 800,
+					easing: "easeOutExpo",
+				});
+
+				// Fade in the title
+				anime({
+					targets: "#projects-title",
+					opacity: [0, 1],
+					translateY: [-20, 0],
+					duration: 1000,
+					easing: "easeOutExpo",
+					delay: 200,
+				});
+
+				// Delay animation for project grid
+				anime({
+					targets: "#project-grid",
+					opacity: [0, 1],
+					translateY: [-20, 0],
+					duration: 1200,
+					easing: "easeOutExpo",
+					delay: 400,
+				});
+			});
+		</script>
 	</body>
 </html>
