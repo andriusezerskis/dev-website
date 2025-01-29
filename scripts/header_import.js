@@ -2,56 +2,68 @@ function loadHTML(url, elementId) {
 	fetch(url)
 		.then((response) => response.text())
 		.then((data) => {
-			// Inject the fetched HTML into the target element
 			const element = document.getElementById(elementId);
 			if (element) {
 				element.innerHTML = data;
-
-				// Reapply event listeners after dynamic content is loaded
 				initializeEventListeners();
+				initializeMobileMenu();
 			}
 		})
 		.catch((error) => console.error("Error loading HTML:", error));
 }
 
 function initializeEventListeners() {
-	// Discord Icon - Open Modal
-	const discordIcon = document.getElementById("discord-icon");
-	if (discordIcon) {
-		discordIcon.addEventListener("click", () => {
-			const discordModal = document.getElementById("discordModal");
-			if (discordModal) {
+	// Get Discord elements
+	const discordIcons = document.querySelectorAll(
+		"#discord-icon, #discord-icon-mobile"
+	);
+	const discordModal = document.getElementById("discordModal");
+	const closeButton = document.getElementById("close-btn");
+	const copyButton = document.getElementById("copy-btn");
+	const discordText = document.getElementById("discord-info-modal");
+
+	// Open Discord Modal
+	if (discordIcons.length && discordModal) {
+		discordIcons.forEach((icon) => {
+			icon.addEventListener("click", () => {
 				discordModal.classList.remove("hidden");
-			}
+			});
 		});
 	}
 
 	// Close Modal
-	const closeButton = document.getElementById("close-btn");
 	if (closeButton) {
 		closeButton.addEventListener("click", () => {
-			const discordModal = document.getElementById("discordModal");
-			if (discordModal) {
-				discordModal.classList.add("hidden");
-			}
+			discordModal.classList.add("hidden");
 		});
 	}
 
-	// Copy Discord Username
-	const copyButton = document.getElementById("copy-btn");
-	if (copyButton) {
+	// Copy Discord Tag
+	if (copyButton && discordText) {
 		copyButton.addEventListener("click", () => {
-			const discordText = document.getElementById("discord-info-modal");
-			if (discordText) {
-				navigator.clipboard.writeText(discordText.innerText).then(() => {
-					copyButton.innerHTML = '<i class="fas fa-check text-green-500"></i>';
-				});
-			}
+			navigator.clipboard.writeText(discordText.innerText).then(() => {
+				copyButton.innerHTML =
+					'<i class="fas fa-check text-green-500"></i> Copied!';
+				setTimeout(() => {
+					copyButton.innerHTML = "Copy";
+				}, 2000);
+			});
+		});
+	}
+}
+
+// Mobile Navigation Menu Toggle
+function initializeMobileMenu() {
+	const menuBtn = document.getElementById("menu-btn");
+	const mobileMenu = document.getElementById("mobile-menu");
+
+	if (menuBtn && mobileMenu) {
+		menuBtn.addEventListener("click", () => {
+			mobileMenu.classList.toggle("hidden");
 		});
 	}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	// Load the navigation bar into the placeholder div
 	loadHTML("main_header.html", "header-placeholder");
 });
