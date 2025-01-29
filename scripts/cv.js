@@ -1,36 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const education = [
-		{
-			degree: "Master of Science in Computer Science",
-			institution: "University of Brussels",
-			period: "2024 - Present",
-			details: "Specialization in AI and Web",
-		},
-		{
-			degree: "Bachelor of Science in Computer Science",
-			institution: "University of Brussels",
-			period: "2021 - Present",
-			details: "3 courses left",
-		},
-	];
-
 	const skills = {
-		"Web development": [
+		"Programming Languages": [
+			{ name: "SQL", icon: "fas fa-database", level: 75 },
+			{ name: "Python", icon: "fab fa-python", level: 85 },
+			{ name: "C++", icon: "fas fa-code", level: 75 },
+			{ name: "Java", icon: "fab fa-java", level: 75 },
+			{ name: "Rust", icon: "fab fa-rust", level: 50 },
+		],
+		"Web Development": [
 			{ name: "JavaScript", icon: "fab fa-js-square", level: 50 },
 			{ name: "HTML", icon: "fab fa-html5", level: 70 },
 			{ name: "CSS", icon: "fab fa-css3-alt", level: 50 },
 			{ name: "PHP", icon: "fab fa-php", level: 50 },
 		],
-		"Programming languages": [
-			{ name: "SQL", icon: "fas fa-database", level: 75 },
-			{ name: "Python", icon: "fab fa-python", level: 90 },
-			{ name: "C++", icon: "fab fa-cuttlefish", level: 95 },
-			{ name: "Java", icon: "fab fa-java", level: 90 },
-		],
-		"Tools and frameworks": [
+		"Tools and Frameworks": [
 			{ name: "NGinx", level: 30 },
 			{ name: "FLTK", level: 30 },
-			{ name: "Bootstrap", level: 50 },
+			{ name: "Tailwind", level: 50 },
 			{ name: "Git", level: 60 },
 			{ name: "Docker", level: 50 },
 		],
@@ -50,84 +36,136 @@ document.addEventListener("DOMContentLoaded", () => {
 		},
 	];
 
-	const generateEducation = () =>
-		education
-			.map(
-				(item) => `
-        <div class="timeline-item ${
-					item.degree.includes("Master") ? "left" : "right"
-				}">
-            <div class="timeline-icon"></div>
-            <div class="timeline-content bg-dark-gray">
-                <h5 class="text-warning">${item.degree}</h5>
-                <p>${item.institution}, ${item.period}</p>
-                <p>${item.details}</p>
-            </div>
-        </div>
-    `
-			)
-			.join("");
+	// Generate Skills Section
+	const generateSkills = () => {
+		const skillsContainer = document.querySelector(".skills ul");
+		if (!skillsContainer) return;
 
-	const generateSkills = () =>
-		Object.entries(skills)
-			.map(
-				([category, skillList]) => `
-        <li>
-            <h3 class="text-warning">${category}</h3>
-            <div class="row">
-                ${skillList
-									.map(
-										(skill) => `
-                    <div class="col-md-6 mb-3">
-                        <div class="skill">
-                            <h4>${skill.name} ${
-											skill.icon ? `<i class="${skill.icon}"></i>` : ""
-										}</h4>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: ${
-																	skill.level
-																}%;" aria-valuenow="${
-											skill.level
-										}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                `
-									)
-									.join("")}
-            </div>
-        </li>
-    `
-			)
-			.join("");
+		Object.entries(skills).forEach(([category, skillList]) => {
+			const listItem = document.createElement("li");
 
-	const generateExperience = () =>
-		experience
-			.map(
-				(item) => `
-        <div class="card experience-card bg-dark-gray mb-4">
-            <div class="card-body">
-                <h5 class="text-warning">${item.title}</h5>
-                <p>${item.company} - ${item.period}</p>
-                <p>Responsibilities:</p>
-                <ul>
-                    ${item.responsibilities
-											.map((responsibility) => `<li>${responsibility}</li>`)
-											.join("")}
-                </ul>
-                <p>Technologies used:</p>
-                <ul>
-                    ${item.technologies
-											.map((tech) => `<li>${tech}</li>`)
-											.join("")}
-                </ul>
-            </div>
-        </div>
-    `
-			)
-			.join("");
+			// Category Title
+			const categoryTitle = document.createElement("h4");
+			categoryTitle.className =
+				"text-blue-600 font-bold text-2xl mb-6 text-center uppercase";
+			categoryTitle.textContent = category;
 
-	document.querySelector(".skills ul").innerHTML = generateSkills();
-	document.querySelector(".timeline").innerHTML = generateEducation();
-	document.querySelector(".experience").innerHTML = generateExperience();
+			// Skills Grid
+			const skillGrid = document.createElement("div");
+			skillGrid.className =
+				"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
+
+			skillList.forEach((skill) => {
+				// Skill Card
+				const skillCard = document.createElement("div");
+				skillCard.className =
+					"group flex flex-col items-center p-4 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300";
+
+				// Skill Title
+				const skillTitle = document.createElement("h4");
+				skillTitle.className =
+					"text-lg font-semibold text-gray-800 mb-2 flex items-center gap-2";
+				skillTitle.innerHTML = `${skill.name} ${
+					skill.icon
+						? `<i class="${skill.icon} text-green-500 text-xl"></i>`
+						: ""
+				}`;
+
+				// Stars
+				const starsContainer = document.createElement("div");
+				starsContainer.className =
+					"flex gap-1 mt-2 justify-center text-yellow-400";
+
+				const maxStars = 5;
+				const numStars = Math.round((skill.level / 100) * maxStars);
+
+				for (let i = 0; i < maxStars; i++) {
+					const star = document.createElement("i");
+					star.className =
+						i < numStars ? "fas fa-star text-lg" : "far fa-star text-lg";
+					starsContainer.appendChild(star);
+				}
+
+				// Append Skill Title and Stars
+				skillCard.appendChild(skillTitle);
+				skillCard.appendChild(starsContainer);
+
+				// Add to Grid
+				skillGrid.appendChild(skillCard);
+			});
+
+			// Append Category Title and Skill Grid
+			listItem.appendChild(categoryTitle);
+			listItem.appendChild(skillGrid);
+			skillsContainer.appendChild(listItem);
+		});
+	};
+
+	// Generate Professional Experience Section
+	const generateExperience = () => {
+		const experienceContainer = document.querySelector(".experience");
+		if (!experienceContainer) return;
+
+		experience.forEach((item) => {
+			// Experience Card
+			const card = document.createElement("div");
+			card.className =
+				"bg-white border border-gray-200 p-5 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex flex-col";
+
+			// Title
+			const title = document.createElement("h5");
+			title.className = "text-blue-600 font-bold text-xl mb-4";
+			title.textContent = item.title;
+
+			// Company and Period
+			const company = document.createElement("p");
+			company.className = "text-gray-500 text-sm mb-4";
+			company.textContent = `${item.company} - ${item.period}`;
+
+			// Responsibilities
+			const responsibilitiesTitle = document.createElement("p");
+			responsibilitiesTitle.className =
+				"text-gray-500 font-medium text-sm mt-2 mb-1";
+			responsibilitiesTitle.textContent = "Responsibilities:";
+
+			const responsibilitiesList = document.createElement("ul");
+			responsibilitiesList.className =
+				"list-disc list-inside text-gray-600 text-sm";
+			item.responsibilities.forEach((responsibility) => {
+				const li = document.createElement("li");
+				li.textContent = responsibility;
+				responsibilitiesList.appendChild(li);
+			});
+
+			// Technologies
+			const technologiesTitle = document.createElement("p");
+			technologiesTitle.className =
+				"text-gray-500 font-medium text-sm mt-2 mb-1";
+			technologiesTitle.textContent = "Technologies used:";
+
+			const technologiesList = document.createElement("ul");
+			technologiesList.className =
+				"list-disc list-inside text-gray-600 text-sm";
+			item.technologies.forEach((tech) => {
+				const li = document.createElement("li");
+				li.textContent = tech;
+				technologiesList.appendChild(li);
+			});
+
+			// Append Elements to Card
+			card.appendChild(title);
+			card.appendChild(company);
+			card.appendChild(responsibilitiesTitle);
+			card.appendChild(responsibilitiesList);
+			card.appendChild(technologiesTitle);
+			card.appendChild(technologiesList);
+
+			// Add Card to Container
+			experienceContainer.appendChild(card);
+		});
+	};
+
+	// Generate Sections
+	generateSkills();
+	generateExperience();
 });

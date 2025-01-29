@@ -4,7 +4,7 @@ header("Pragma: no-cache");
 header("Expires: 0");
 ?>
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,104 +13,143 @@ header("Expires: 0");
 			name="description"
 			content="Portfolio of Andrius Ežerskis, a computer science student specializing in AI and web development."
 		/>
+		<!-- Tailwind CSS -->
 		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
 			rel="stylesheet"
 		/>
-		<link href="/css/style.css" rel="stylesheet" />
+		<!-- FontAwesome for Icons -->
 		<link
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 			rel="stylesheet"
 		/>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
-	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
-			<div class="container-fluid">
-				<a
-					class="navbar-brand text-warning fs-3"
-					href="/index.html"
-					target="_top"
-					>Andrius Ežerskis</a
-				>
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#navbarNav"
-					aria-controls="navbarNav"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link fs-5" href="/html/projects.html" target="_top"
+	<body class="bg-gray-50 text-gray-700">
+		<!-- Header -->
+		<nav
+			class="fixed top-0 left-0 w-full bg-white border-b border-gray-200 shadow-md z-50"
+			role="navigation"
+			aria-label="Main Navigation"
+		>
+			<div
+				class="container mx-auto px-4 py-4 flex items-center justify-between"
+			>
+				<!-- Left Section: Name + Navigation -->
+				<div class="flex items-center gap-6">
+					<!-- Logo (Your Name) -->
+					<a
+						href="/index.html"
+						class="text-blue-600 text-2xl font-bold"
+						aria-label="Andrius Ežerskis Home"
+					>
+						Andrius Ežerskis
+					</a>
+
+					<!-- Navigation Menu (Next to Name) -->
+					<ul class="flex gap-6 items-center">
+						<li>
+							<a
+								href="/html/projects.html"
+								class="hover:text-green-500 text-lg font-semibold text-gray-700 transition duration-300 ease-in-out transform hover:scale-110"
 								>Projects</a
 							>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link fs-5" href="/html/CV.html" target="_top">CV</a>
+						<li>
+							<a
+								href="/html/CV.html"
+								class="hover:text-green-500 text-lg font-semibold text-gray-700 transition duration-300 ease-in-out transform hover:scale-110"
+								>CV</a
+							>
 						</li>
 					</ul>
 				</div>
-				<div class="d-flex ms-auto social-icons">
+
+				<!-- Social Links (Right) -->
+				<div class="flex items-center gap-4">
 					<a
-						id="discord-icon"
-						class="text-light mx-2"
 						href="#"
-						data-bs-toggle="modal"
-						data-bs-target="#discordModal"
+						id="discord-icon"
+						class="hover:text-green-500 text-gray-700 transition duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg"
+						aria-label="Discord"
 					>
-						<i class="fab fa-discord fa-lg"></i>
+						<i class="fab fa-discord text-xl"></i>
 					</a>
-					<div id="discord-info" class="text-light mx-2" style="display: none">
-						lemonbrownie
-					</div>
 					<a
 						href="https://www.linkedin.com/in/andrius-ezerskis-32b665283"
 						target="_blank"
-						class="text-light mx-2"
+						class="hover:text-green-500 text-gray-700 transition duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg"
+						aria-label="LinkedIn Profile"
 					>
-						<i class="fab fa-linkedin fa-lg"></i>
+						<i class="fab fa-linkedin text-xl"></i>
 					</a>
 					<a
 						href="mailto:andriuko6@gmail.com"
 						target="_blank"
-						class="text-light mx-2"
+						class="hover:text-green-500 text-gray-700 transition duration-300 ease-in-out transform hover:scale-125 hover:shadow-lg"
+						aria-label="Send Email"
 					>
-						<i class="fas fa-envelope fa-lg"></i>
+						<i class="fas fa-envelope text-xl"></i>
 					</a>
 				</div>
 			</div>
 		</nav>
+
+		<!-- Discord Modal -->
 		<div
-			class="modal fade"
 			id="discordModal"
-			tabindex="-1"
-			aria-labelledby="discordModalLabel"
-			aria-hidden="true"
+			class="hidden fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-75 z-40"
+			role="dialog"
+			aria-labelledby="discordModal"
 		>
 			<div
-				class="modal-dialog modal-sm d-flex align-items-center justify-content-end"
+				class="bg-white text-gray-800 p-4 rounded-md flex flex-col items-center gap-4 shadow-lg w-80"
 			>
-				<div class="modal-content bg-dark text-light">
-					<div
-						class="modal-body d-flex align-items-center justify-content-center"
-					>
-						<p id="discord-info-modal" class="mb-0">lemonbrownie</p>
-						<button
-							id="copy-btn"
-							class="copy-btn btn btn-secondary"
-							title="Copy to clipboard"
-						>
-							<i class="fas fa-copy"></i>
-						</button>
-					</div>
-				</div>
+				<p id="discord-info-modal" class="text-lg font-semibold">
+					<span class="text-green-500">lemonbrownie</span>
+				</p>
+				<button
+					id="copy-btn"
+					class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md font-medium"
+					aria-label="Copy Discord Username"
+				>
+					Copy to Clipboard
+				</button>
+				<button
+					id="close-btn"
+					class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md font-medium"
+					aria-label="Close Modal"
+				>
+					Close
+				</button>
 			</div>
 		</div>
+
+		<script>
+			// Mobile Menu Toggle
+			document
+				.getElementById("nav-toggle")
+				?.addEventListener("click", function () {
+					const menu = document.getElementById("nav-menu");
+					menu.classList.toggle("hidden");
+				});
+
+			// Discord Modal Toggle
+			document
+				.getElementById("discord-icon")
+				?.addEventListener("click", function () {
+					document.getElementById("discordModal").classList.toggle("hidden");
+				});
+
+			// Copy Discord Username
+			document
+				.getElementById("copy-btn")
+				?.addEventListener("click", function () {
+					const discordText =
+						document.getElementById("discord-info-modal").textContent;
+					navigator.clipboard.writeText(discordText).then(() => {
+						alert("Discord username copied to clipboard!");
+					});
+				});
+		</script>
 	</body>
 </html>
